@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Скрываем загрузочный экран и показываем основной контент после загрузки страницы
     window.addEventListener('load', () => {
         loadingScreen.style.display = 'none';
+        document.body.style.overflow = 'inherit';
         /*content.style.display = 'block';*/
     });
 });
