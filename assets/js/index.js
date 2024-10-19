@@ -4,6 +4,11 @@ function isElementAtBottom(element) {
     return rect.bottom >= windowHeight;
 }
 
+function isElementAtTop(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top === 0;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     const header = document.querySelector('.c-header');
