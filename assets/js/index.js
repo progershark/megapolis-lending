@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector(`.c-modal[data-modal="${target}"]`);
             modal.classList.add('fade-in');
             modal.style.visibility = 'visible'; // Делаем элемент видимым
-            body.style.overflow = 'hidden';
+            /*body.style.overflow = 'hidden';*/
         });
     });
 
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 modal.style.visibility = 'hidden'; // Скрываем элемент
                 modal.classList.remove('fade-out');
-                body.style.overflow = 'inherit';
+                /*body.style.overflow = 'inherit';*/
             }, 300);
         });
     });
