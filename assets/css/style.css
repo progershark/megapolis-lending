@@ -47,6 +47,34 @@
     --phone: 480px;
 }
 
+#loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark);
+    opacity: 0.7;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 6px solid var(--white-100);
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 section[role="tabpanel"].active {
     display: block;
     opacity: 1;
