@@ -728,7 +728,6 @@ p {
 
 .c-product__tags {
     width: 100%;
-    overflow-x: auto;
     transition: transform 0.8s ease-out;
 }
 
