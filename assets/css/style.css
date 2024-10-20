@@ -727,7 +727,8 @@ p {
 }
 
 .c-product__tags {
-    width: 100%;
+    width: calc(100% + ((100vw - var(--wrapper-width)) / 2));
+    overflow-x: auto;
     transition: transform 0.8s ease-out;
 }
 
