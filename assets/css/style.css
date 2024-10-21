@@ -1,13 +1,13 @@
 @font-face {
     font-family: "Medium";
-    src: url(../../assets/fonts/Cygre/Cygre-Medium.ttf) format("truetype");
+    src: url(../../assets/fonts/Cygre/Cygre-Regular.ttf) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Regular";
-    src: url(../../assets/fonts/Cygre/Cygre-Regular.ttf) format("truetype");
+    src: url(../../assets/fonts/Cygre/Cygre-Light.ttf) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -45,6 +45,15 @@
     --tablet: 991px;
     --mobile: 767px;
     --phone: 480px;
+}
+
+/* Стили для Chrome, Safari, Edge */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--white-100) !important;
+    caret-color: var(--white-100);
 }
 
 #loading-screen {
@@ -195,10 +204,16 @@ h2 {
     margin: 0;
 }
 
+@media screen and (max-width: 1440px) {
+    h2 {
+        font-size: 48px;
+        line-height: 52px;
+    }
+}
+
 h3 {
     font-family: var(--medium);
     font-size: 46px;
-    text-transform: uppercase;
     line-height: 55.2px;
     color: var(--white-200);
     margin: 0;
@@ -363,6 +378,7 @@ p {
     font-size: 20px;
     color: var(--white-100);
     transition: 0.2s;
+    text-decoration: none;
 }
 
 .c-header__nav ul li a:hover {
@@ -371,7 +387,7 @@ p {
 
 .c-banner {
     height: 100vh;
-    /*min-height: 860px;*/
+    min-height: 860px;
     /*max-height: 1080px;*/
     width: 100%;
     padding-top: 60px;
@@ -388,7 +404,7 @@ p {
     padding-top: 60px;
 }
 
-@media only screen and (max-height: 860px) {
+@media only screen and (max-height: 960px) {
     .c-banner__top {
         padding-top: 20px;
         gap: 40px;
@@ -414,7 +430,7 @@ p {
     z-index: 2;
 }
 
-@media only screen and (max-height: 860px) {
+@media only screen and (max-height: 960px) {
     .c-banner__footer {
         padding-bottom: 30px;
     }
@@ -429,7 +445,7 @@ p {
 }
 
 .windows .c-banner__process {
-    transition: transform 0.8s ease-out;
+    transition: transform 1.5s ease-out;
 }
 
 .c-banner__process {
@@ -460,6 +476,15 @@ p {
 
 .c-banner__process-item img {
     object-fit: cover;
+}
+
+
+@media only screen and (max-height: 960px) {
+    .c-banner__process-item img {
+        object-fit: cover;
+        transform: scale(0.9);
+        margin-top: -40px;
+    }
 }
 
 .c-banner__bottom {
@@ -494,7 +519,7 @@ p {
     padding: 45px 0;
 }
 
-@media only screen and (max-height: 860px) {
+@media only screen and (max-height: 960px) {
     .c-banner__info {
         padding: 30px 0;
     }
@@ -568,7 +593,8 @@ p {
 .c-info-box__info-mini-item span {
     font-family: var(--medium);
     font-size: 54px;
-    width: 105px;
+    width: max-content;
+    margin-right: 4px;
     display: block;
     margin-top: 10px;
 }
@@ -727,8 +753,8 @@ p {
 }
 
 .c-product__tags {
-    width: calc(100% + ((100vw - var(--wrapper-width)) / 2));
-    overflow-x: auto;
+    width: calc(100% + ((100vw - 100%) / 2));
+    overflow-x: scroll;
     transition: transform 0.8s ease-out;
     margin-bottom: -16px;
 }
@@ -804,13 +830,11 @@ p {
     height: 100%;
     left: 0;
     top: 0;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .c-product__cards-item.active:before {
-    /*visibility: hidden;
     opacity: 0;
-    z-index: -1;*/
 }
 
 .c-product__cards-item-top {
@@ -988,6 +1012,7 @@ p {
     opacity: 1;
     transition: opacity 1s ease-in-out;
     position: absolute;
+    transform: scale(1.1);
 }
 
 .c-models__images img.hidden-img {
@@ -1175,6 +1200,7 @@ p {
     line-height: 21.6px;
     margin: 0;
     transition: 0.2s;
+    text-decoration: none;
 }
 
 .c-footer__nav ul li a:hover {
@@ -1223,6 +1249,7 @@ a.c-footer__bottom-item:hover {
     width: 100%;
     height: 100%;
     visibility: hidden;
+    overflow: auto;
 }
 
 .c-modal:before {
@@ -1236,6 +1263,7 @@ a.c-footer__bottom-item:hover {
     background: rgba(0, 0, 0, 0.7);
     opacity: 0; /* Начальное состояние */
     transition: opacity 0.3s ease;
+    min-height: 960px;
 }
 
 .c-modal__cover {
@@ -1331,6 +1359,7 @@ a.c-footer__bottom-item:hover {
     position: absolute;
     width: 100%;
     height: 100%;
+    min-height: 960px;
     z-index: 3;
     left: 0;
     top: 0;
