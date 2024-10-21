@@ -1,16 +1,24 @@
 @font-face {
     font-family: "Medium";
-    src: url(../../assets/fonts/Cygre/Cygre-Regular.ttf) format("truetype");
+    src: url(../../assets/fonts/Cygre/Cygre-Medium.ttf) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Regular";
+    src: url(../../assets/fonts/Cygre/Cygre-Regular.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Light";
     src: url(../../assets/fonts/Cygre/Cygre-Light.ttf) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
+
 
 * {
     box-sizing: border-box;
@@ -47,6 +55,11 @@
     --phone: 480px;
 }
 
+.mac {
+    --medium: "Regular";
+    --regular: "Light";
+}
+
 /* Стили для Chrome, Safari, Edge */
 input:-webkit-autofill,
 textarea:-webkit-autofill,
@@ -54,6 +67,10 @@ select:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: var(--white-100) !important;
     caret-color: var(--white-100);
+}
+
+.w-auto {
+    width: auto !important;
 }
 
 #loading-screen {
@@ -444,8 +461,12 @@ p {
 
 }
 
+.mac .c-banner__process{
+    transition: transform 0.3s ease-out;
+}
+
 .windows .c-banner__process {
-    transition: transform 1.5s ease-out;
+    transition: transform 0.8s ease-out;
 }
 
 .c-banner__process {
@@ -505,6 +526,10 @@ p {
     width: max-content;
     border-radius: 3px;
     background: var(--white-100);
+}
+
+.mac .c-banner__process-bar span {
+    transition: transform 0.3s ease-out;
 }
 
 .windows .c-banner__process-bar span {
@@ -633,6 +658,7 @@ p {
     right: 0;
     width: max-content;
     font-family: var(--regular);
+    text-transform: none;
     font-size: 16px;
     line-height: 21.6px;
     color: var(--white-100);
@@ -1359,7 +1385,8 @@ a.c-footer__bottom-item:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 960px;
+    min-height: max-content;
+    padding: var(--py) 0;
     z-index: 3;
     left: 0;
     top: 0;
