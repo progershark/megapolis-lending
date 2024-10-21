@@ -27,5 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingScreen.style.display = 'none';
         document.body.style.overflow = 'inherit';
         /*content.style.display = 'block';*/
+
+        // AOS
+        AOS.init({
+            once: true
+        });
     });
 });

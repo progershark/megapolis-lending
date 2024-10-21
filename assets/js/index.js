@@ -332,10 +332,4 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (navigator.userAgent.indexOf("Mac") != -1) {
         document.body.classList.add('mac');
     }
-
-
-    // AOS
-    AOS.init({
-        once: true
-    });
 });
