@@ -476,7 +476,7 @@ p {
     position: absolute;
     overflow: scroll;
     left: 0;
-    width: 100%;
+    width: max-content;
     padding-left: 40%;
     padding-right: 23%;
 }
@@ -1006,13 +1006,26 @@ p {
 }
 
 .c-models {
+
+}
+
+.c-models__header {
+
+}
+
+.c-models__title {
+    max-width: 787px;
+    width: 100%;
+}
+
+.c-models__content {
     display: flex;
     gap: 30px;
 }
 
 .c-models__group {
     width: 50%;
-    height: 505px;
+    height: 415px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1038,7 +1051,6 @@ p {
     opacity: 1;
     transition: opacity 1s ease-in-out;
     position: absolute;
-    transform: scale(1.1);
 }
 
 .c-models__images img.hidden-img {
@@ -1057,6 +1069,7 @@ p {
     font-size: 16px;
     color: var(--white-100);
     line-height: 21.6px;
+    padding-top: 80px;
 }
 
 .c-models__btn {
@@ -1286,7 +1299,8 @@ a.c-footer__bottom-item:hover {
     content: '';
     left: 0;
     top: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    /*background: rgba(34, 38, 44, 0.5);*/
     opacity: 0; /* Начальное состояние */
     transition: opacity 0.3s ease;
     min-height: 960px;
@@ -1299,7 +1313,6 @@ a.c-footer__bottom-item:hover {
     z-index: 2;
     left: 0;
     top: 0;
-    background: rgba(0, 0, 0, 0.7);
     opacity: 0;
 }
 

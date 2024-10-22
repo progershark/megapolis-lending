@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const galleryImages = galleryContainer.querySelectorAll('img');
         const galleryButtonPrev = item.querySelector('.galleryButtonPrev');
         const galleryButtonNext = item.querySelector('.galleryButtonNext');
+        const counter = item.querySelector('.galleryCounter');
         let galleryCurrentIndex = 0;
 
         function showImage(index) {
@@ -104,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function updateCounter() {
-            const counter = item.querySelector('.galleryCounter');
             counter.textContent = `${galleryCurrentIndex + 1} / ${galleryImages.length}`;
         }
 
@@ -117,6 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryCurrentIndex = (galleryCurrentIndex + 1) % galleryImages.length;
             showImage(galleryCurrentIndex);
         });
+
+        if (galleryImages.length <= 1) {
+            counter.remove();
+            galleryButtonPrev.remove();
+            galleryButtonNext.remove();
+        }
 
         // Инициализация
         showImage(galleryCurrentIndex);
@@ -242,6 +248,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        if (tabButtons.length <= 1) {
+            tabButtonPrev.remove();
+            tabButtonNext.remove();
+        }
+
         updateButtons();
         updateTabs();
     });
@@ -265,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     totalWidth += gapValue * (itemCount - 1) + processPaddingX;
 
-    process.style.width = `${totalWidth}px`;
+    //process.style.width = `${totalWidth}px`;
 
     const horizontalScroll = totalWidth - window.innerWidth;
 

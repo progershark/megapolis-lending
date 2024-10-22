@@ -83,14 +83,16 @@
                         </div>
                         <div class="c-banner__bottom">
                             <div class="c-banner__footer">
-                                <div class="overflowWrapHidden" style="width: -webkit-fill-available;">
-                                    <button
-                                        class="c-banner__btn c-btn c-btn__opacity btnTriggerPopup"
-                                        data-target="catalog"
-                                        data-aos="fade"
-                                        data-aos-anchor-placement="bottom-bottom"
-                                        data-aos-duration="2500">Получить каталог
-                                    </button>
+                                <div class="overflowWrapHidden" style="width: 100%; max-width: 343px;">
+                                    <div data-aos="fade"
+                                         data-aos-anchor-placement="bottom-bottom"
+                                         data-aos-duration="2500">
+                                        <button
+                                            class="c-banner__btn c-btn c-btn__opacity btnTriggerPopup"
+                                            data-target="catalog"
+                                        >Получить каталог
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="grow"></div>
                                 <div class="overflowWrapHidden">
@@ -343,13 +345,14 @@
                             </div>
                         </div>
                         <div class="overflowWrapHidden w-auto">
-                            <button
-                                class="c-product__btn c-btn c-btn__accent btnTriggerPopup"
-                                data-target="catalog"
-                                data-aos="fade"
-                                data-aos-anchor-placement="bottom-bottom"
-                                data-aos-duration="500"
-                            >Получить каталог</button>
+                            <div data-aos="fade"
+                                 data-aos-anchor-placement="bottom-bottom"
+                                 data-aos-duration="500">
+                                <button
+                                    class="c-product__btn c-btn c-btn__accent btnTriggerPopup"
+                                    data-target="catalog"
+                                >Получить каталог</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -361,49 +364,62 @@
             <div class="s-wrapper">
                 <div class="s-column">
                     <div class="c-models">
-                        <div class="c-models__group">
-                            <div class="c-models__info">
-                                <div class="overflowWrapHidden">
-                                    <div class="c-models__info-item"
-                                         data-aos="fade-up"
-                                         data-aos-anchor-placement="center-bottom"
-                                         data-aos-duration="1000">
-                                        Воспользуйтесь 3D-моделями наших конструкций  для
-                                        проектирования уникальных общественных пространств.
-                                    </div>
-                                </div>
-                                <div class="overflowWrapHidden">
-                                    <div class="c-models__info-item"
-                                         data-aos="fade-up"
-                                         data-aos-anchor-placement="center-bottom"
-                                         data-aos-duration="1000">
-                                        Это позволит вам быстро и удобно дополнить проект проверенными
-                                        изделиями, уделяя внимание безопасности и экологии.
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="c-models__header">
                             <div class="overflowWrapHidden">
-                                <button class="c-models__btn btnTriggerPopup"
-                                        data-target="3d-modal"
-                                        data-aos="fade"
-                                        data-aos-anchor-placement="bottom-bottom"
-                                        data-aos-duration="500">
-                                    Получить <br> 3D модели
-                                </button>
+                                <h2 class="c-models__title c-blacked-text"
+                                    data-aos="fade-up"
+                                    data-aos-anchor-placement="center-bottom"
+                                    data-aos-duration="1000">Продуманная база МАФ для архитекторов
+                                </h2>
                             </div>
                         </div>
-                        <div class="c-models__group" style="justify-content: center">
-                            <div class="c-models__images">
-                                <img src="assets/img/models-1.png" alt="img">
-                                <img src="assets/img/models-2.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-3.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-4.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-5.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-6.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-7.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-8.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-9.png" class="hidden-img" alt="img">
-                                <img src="assets/img/models-10.png" class="hidden-img" alt="img">
+                        <div class="c-models__content">
+                            <div class="c-models__group">
+                                <div class="c-models__info">
+                                    <div class="overflowWrapHidden">
+                                        <div class="c-models__info-item"
+                                             data-aos="fade-up"
+                                             data-aos-anchor-placement="center-bottom"
+                                             data-aos-duration="1000">
+                                            Воспользуйтесь 3D-моделями наших конструкций  для
+                                            проектирования уникальных общественных пространств.
+                                        </div>
+                                    </div>
+                                    <div class="overflowWrapHidden">
+                                        <div class="c-models__info-item"
+                                             data-aos="fade-up"
+                                             data-aos-anchor-placement="center-bottom"
+                                             data-aos-duration="1000">
+                                            Это позволит вам быстро и удобно дополнить проект проверенными
+                                            изделиями, уделяя внимание безопасности и экологии.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overflowWrapHidden">
+                                    <div data-aos="fade"
+                                         data-aos-anchor-placement="bottom-bottom"
+                                         data-aos-duration="500">
+                                        <button
+                                            class="c-models__btn btnTriggerPopup"
+                                            data-target="3d-modal"
+                                        >Получить <br> 3D модели
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c-models__group" style="justify-content: center">
+                                <div class="c-models__images">
+                                    <img src="assets/img/models-1.png" alt="img">
+                                    <img src="assets/img/models-2.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-3.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-4.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-5.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-6.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-7.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-8.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-9.png" class="hidden-img" alt="img">
+                                    <img src="assets/img/models-10.png" class="hidden-img" alt="img">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -420,16 +436,18 @@
                             <div class="overflowWrapHidden">
                                 <h2 class="c-info-box__title c-blacked-text" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">От скамеек и беседок</h2>
                             </div>
-                            <a
+                            <div data-aos="fade"
+                                 data-aos-anchor-placement="center-center"
+                                 data-aos-duration="500"
+                                 style="max-width: 340px; width: 100%;">
+                                <a
                                     href="https://megapolisgroup.spb.ru/"
                                     target="_blank"
                                     class="c-info-box__btn c-btn c-btn__opacity"
-                                    data-aos="fade"
-                                    data-aos-anchor-placement="center-center"
-                                    data-aos-duration="500"
-                            >
-                                Сайт компании
-                            </a>
+                                >
+                                    Сайт компании
+                                </a>
+                            </div>
                         </div>
                         <div class="c-info-box__content">
                             <div class="c-info-box__content-top">
@@ -584,13 +602,13 @@
                             </div>
                         </div>
                         <div class="overflowWrapHidden w-auto">
-                            <button class="c-product__btn c-btn c-btn__accent btnTriggerPopup"
-                                    data-target="project-costing"
-                                    data-aos="fade"
-                                    data-aos-anchor-placement="bottom-bottom"
-                                    data-aos-duration="2500">
-                                Рассчитать проект
-                            </button>
+                            <div data-aos="fade"
+                                 data-aos-anchor-placement="bottom-bottom"
+                                 data-aos-duration="2500">
+                                <button class="c-product__btn c-btn c-btn__accent btnTriggerPopup"
+                                        data-target="project-costing">Рассчитать проект
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -647,9 +665,14 @@
                                   data-aos-anchor-placement="bottom-bottom"
                                   data-aos-duration="2000">Нажав на кнопку «Отправить», вы даете согласие на обработку Персональных данных</span>
 
-                            <button type="submit" class="c-form__btn c-btn c-btn__accent" data-aos="fade"
-                                    data-aos-anchor-placement="bottom-bottom"
-                                    data-aos-duration="2000">Отправить</button>
+                            <div data-aos="fade"
+                                 data-aos-anchor-placement="bottom-bottom"
+                                 data-aos-duration="2000">
+                                <button
+                                    type="submit"
+                                    class="c-form__btn c-btn c-btn__accent">Отправить
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
