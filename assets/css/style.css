@@ -39,7 +39,6 @@
 
     --accent: rgba(76, 98, 130, 1);
 
-
     --wrapper-width: 1400px;
     --px: 100px;
     --py: 90px;
@@ -1511,4 +1510,9 @@ a.c-footer__bottom-item:hover {
 
 .c-modal__form-btn {
     max-width: 100%;
+}
+
+footer .custom-logo-link img {
+    width: 100%;
+    opacity: 0.8;
 }
