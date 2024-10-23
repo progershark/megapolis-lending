@@ -427,7 +427,7 @@ p {
     width: 100vw;
     height: 100vh;
     min-height: 860px;
-    margin-left: calc((100vw - var(--wrapper-width)) / 2 * -1);
+    margin-left: calc((100vw - 100%) / 2 * -1);
 }
 
 .banner__gif:before {
