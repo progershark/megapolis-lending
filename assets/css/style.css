@@ -459,6 +459,10 @@ p {
     object-fit: cover;
 }
 
+.banner__gif img {
+    position: absolute;
+}
+
 .c-banner__top {
     display: flex;
     flex-direction: column;
@@ -1147,6 +1151,10 @@ p {
 }
 
 .c-models__images img.hidden-img {
+    opacity: 0;
+}
+
+.modelsImages2 img.hidden-img {
     opacity: 0;
 }
 

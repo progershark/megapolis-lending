@@ -35,24 +35,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Меняем изображения каждые 2 секунды
-    const images = document.querySelectorAll('.c-models__images img');
-    let currentIndex = 0;
-    let isTransitioning = false;
+    function createSlider(selector, interval, transitionDelay) {
+        const images = document.querySelectorAll(selector + ' img');
+        let currentIndex = 0;
+        let isTransitioning = false;
 
-    function showNextImage() {
-        if (isTransitioning) return;
+        function showNextImage() {
+            if (isTransitioning) return;
 
-        isTransitioning = true;
-        images[currentIndex].classList.add('hidden-img');
+            isTransitioning = true;
+            images[currentIndex].classList.add('hidden-img');
 
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].classList.remove('hidden-img');
-            isTransitioning = false;
-        }, 100);
+            if (transitionDelay) {
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.remove('hidden-img');
+                    isTransitioning = false;
+                }, transitionDelay);
+            } else {
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.remove('hidden-img');
+                isTransitioning = false;
+            }
+        }
+
+        setInterval(showNextImage, interval);
     }
 
-    setInterval(showNextImage, 1000);
+    createSlider('.modelsImages', 1000, 100);
+    createSlider('.modelsImages2', 2000, 0);
 
 
 
@@ -61,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnModalClose = document.querySelectorAll('.btnModalCloseFile');
 
     btnTriggerPopup.forEach(btn => {
+        if (!btn.getAttribute('data-target')) {
+            btn.remove();
+        }
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
             const modal = document.querySelector(`.c-modal[data-modal="${target}"]`);
@@ -209,8 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const tabButtonWidth = tabButtons[0].offsetWidth;
             const gap = parseInt(window.getComputedStyle(tabList).gap, 10);
             const scrollAmount = tabButtonWidth + gap;
-
-            console.log(tabList)
 
             if (direction === 'next') {
                 tabWrapList.scrollLeft += scrollAmount;
