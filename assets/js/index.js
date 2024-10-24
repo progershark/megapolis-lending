@@ -70,6 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Popup
     const btnTriggerPopup = document.querySelectorAll('.btnTriggerPopup');
     const btnModalClose = document.querySelectorAll('.btnModalCloseFile');
+    const formStatusModal = document.querySelector('.c-modal[data-modal="form-status"]');
+    const formStatusTitle = formStatusModal.querySelector('#form-status-title');
+    const formStatusText = formStatusModal.querySelector('#form-status-text');
+    const formStatusButton = formStatusModal.querySelector('#form-status-button');
+
+    let previousModal = null;
 
     btnTriggerPopup.forEach(btn => {
         if (!btn.getAttribute('data-target')) {
@@ -78,24 +84,72 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
             const modal = document.querySelector(`.c-modal[data-modal="${target}"]`);
-            modal.classList.add('fade-in');
-            modal.style.visibility = 'visible'; // Делаем элемент видимым
-            /*body.style.overflow = 'hidden';*/
+            showModal(modal);
         });
     });
 
     btnModalClose.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.c-modal');
-            modal.classList.remove('fade-in');
-            modal.classList.add('fade-out');
-            setTimeout(() => {
-                modal.style.visibility = 'hidden'; // Скрываем элемент
-                modal.classList.remove('fade-out');
-                /*body.style.overflow = 'inherit';*/
-            }, 300);
+            hideModal(modal);
         });
     });
+
+    document.addEventListener('wpcf7mailsent', handleModalEvent('success'), false);
+    document.addEventListener('wpcf7spam', handleModalEvent('error'), false);
+    document.addEventListener('wpcf7mailfailed', handleModalEvent('error'), false);
+
+    function showModal(modal) {
+        modal.classList.add('fade-in');
+        modal.style.visibility = 'visible';
+    }
+
+    function hideModal(modal) {
+        modal.classList.remove('fade-in');
+        modal.classList.add('fade-out');
+        setTimeout(() => {
+            modal.style.visibility = 'hidden';
+            modal.classList.remove('fade-out');
+        }, 300);
+    }
+
+    function handleModalEvent(type) {
+        return function(event) {
+            // Если форма находится в модальном окне, скрываем его
+            const modal = document.querySelector('.c-modal.fade-in');
+            if (modal) {
+                previousModal = modal;
+                hideModal(modal);
+            }
+
+            setTimeout(() => {
+                updateFormStatusModal(type);
+                showModal(formStatusModal);
+            }, 200);
+        };
+    }
+
+    function updateFormStatusModal(type) {
+        if (type === 'success') {
+            formStatusTitle.textContent = 'Спасибо за вашу заявку! Ваши данные успешно отправлены.';
+            formStatusText.innerHTML = 'Мы свяжемся с вами в ближайшее время, чтобы <br> обсудить все детали. Если у вас возникли <br> вопросы, вы <br> всегда можете обратиться к нам.';
+            formStatusButton.textContent = 'Закрыть';
+        } else if (type === 'error') {
+            formStatusTitle.textContent = 'Ошибка при отправке данных';
+            formStatusText.innerHTML = 'К сожалению, не удалось отправить ваши данные. <br> Попробуйте отправить данные еще раз. <br> Если проблема <br> повторится, свяжитесь с нами по телефону <br> +7 800 511 41 54';
+            formStatusButton.textContent = 'Попробовать снова';
+            formStatusButton.addEventListener('click', () => {
+                hideModal(formStatusModal);
+                setTimeout(() => {
+                    if (previousModal) {
+                        showModal(previousModal);
+                    } else {
+                        // Если форма была на странице, ничего не делаем
+                    }
+                }, 200);
+            }, { once: true });
+        }
+    }
 
 
 
