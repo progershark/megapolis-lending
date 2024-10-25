@@ -27,13 +27,13 @@
 }
 
 :root {
-    --white: rgba(255, 255, 255);
-    --white-100: rgba(255, 255, 255, 1);
+    --white: rgba(255, 255, 255, 1);
     --white-200: rgba(232, 238, 245, 1);
-
     --gray-400: rgba(115, 123, 134, 1);
-    --gray-500: rgba(232, 238, 245, 0.1);
+    --gray-500: rgba(255, 255, 255, 0.1);
 
+    --blacked-text: rgba(132, 148, 171, 1);
+    --blacked-text-opacity: rgba(132, 148, 171, 0.33);
     --dark-gray: rgba(34, 38, 44, 1);
     --dark: rgba(24, 23, 23, 1);
 
@@ -65,8 +65,8 @@ input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: var(--white-100) !important;
-    caret-color: var(--white-100);
+    -webkit-text-fill-color: var(--white) !important;
+    caret-color: var(--white);
 }
 
 .w-auto {
@@ -88,7 +88,7 @@ select:-webkit-autofill {
 }
 
 .spinner {
-    border: 6px solid var(--white-100);
+    border: 6px solid var(--white);
     border-top: 6px solid var(--accent);
     border-radius: 50%;
     width: 80px;
@@ -306,8 +306,8 @@ p {
     max-width: 340px;
     width: 100%;
     height: 54px;
-    color: var(--gray-400);
-    border: 1px solid var(--gray-400);
+    color: var(--blacked-text);
+    border: 1px solid var(--blacked-text);
 }
 
 .c-btn__hoverAccent:hover {
@@ -318,12 +318,16 @@ p {
 
 .c-btn__tag:hover,
 .c-btn__tag.active {
-    color: var(--white-100);
-    border-color: var(--white-100);
+    color: var(--white);
+    border-color: var(--white);
 }
 
 .c-blacked-text {
-    color: var(--gray-500);
+    color: var(--blacked-text);
+}
+
+.c-blacked-text-opacity {
+    color: var(--blacked-text-opacity);
 }
 
 .c-position {
@@ -399,7 +403,7 @@ p {
 .c-header__nav ul li a {
     font-family: var(--medium);
     font-size: 20px;
-    color: var(--white-100);
+    color: var(--white);
     transition: 0.2s;
     text-decoration: none;
 }
@@ -487,7 +491,7 @@ p {
     font-family: var(--medium);
     font-size: 20px;
     line-height: 27px;
-    color: var(--white-100);
+    color: var(--white-200);
 }
 
 .c-banner__title {
@@ -495,6 +499,7 @@ p {
     font-size: 340px;
     line-height: 160px;
     margin-bottom: 73px;
+    color: var(--gray-500);
 }
 
 .c-banner__footer {
@@ -523,7 +528,7 @@ p {
     display: flex;
     gap: 32px;
     align-items: center;
-    color: var(--white-100);
+    color: var(--white);
     font-family: var(--regular);
     font-size: 46px;
     line-height: 55.2px;
@@ -539,7 +544,7 @@ p {
     display: block;
     width: 100%;
     height: 2px;
-    background: var(--white-100);
+    background: var(--white);
     order: 1;
 }
 
@@ -623,7 +628,7 @@ p {
     /*min-width: 24px;*/
     width: max-content;
     border-radius: 3px;
-    background: var(--white-100);
+    background: var(--white);
 }
 
 .mac .c-banner__process-bar span {
@@ -652,7 +657,7 @@ p {
     max-width: 230px;
     width: 100%;
     font-size: 16px;
-    color: var(--white-100);
+    color: var(--white-200);
     font-family: var(--regular);
 }
 
@@ -680,7 +685,7 @@ p {
     font-family: var(--regular);
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-100);
+    color: var(--white-200);
 }
 
 .c-info-box__info-item:first-of-type {
@@ -708,7 +713,7 @@ p {
     font-family: var(--regular);
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-100);
+    color: var(--white);
     display: flex;
     height: 60px;
 }
@@ -716,10 +721,10 @@ p {
 .c-info-box__info-mini-item span {
     font-family: var(--medium);
     font-size: 54px;
-    width: max-content;
     margin-right: 4px;
     display: block;
     margin-top: 10px;
+    width: 160px;
 }
 
 .c-info-box__content {
@@ -735,10 +740,6 @@ p {
 
 .c-info-box__content-bottom {
     padding-top: 100px;
-}
-
-.c-info-box__content-position {
-
 }
 
 .c-info-box__content-text {
@@ -759,7 +760,7 @@ p {
     text-transform: none;
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-100);
+    color: var(--white-200);
 }
 
 .c-info-box__content-text span {
@@ -773,6 +774,7 @@ p {
     gap: 20px;
     position: absolute;
     right: 0;
+    z-index: 1;
 }
 
 .c-info-box__content-position-item {
@@ -780,7 +782,7 @@ p {
     font-family: var(--regular);
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-100);
+    color: var(--white-200);
 }
 
 .c-info-box__content-position-item-small {
@@ -827,7 +829,7 @@ p {
     width: 100%;
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-100);
+    color: var(--white-200);
     font-family: var(--regular);
 }
 
@@ -852,7 +854,7 @@ p {
 }
 
 .c-product__switch-btn[disabled] {
-    opacity: 0.5;
+    opacity: 0.2;
     cursor: no-drop;
 }
 
@@ -969,7 +971,7 @@ p {
 
 .c-product__cards-item-title {
     font-family: var(--medium);
-    color: var(--white-100);
+    color: var(--white-200);
     font-size: 20px;
     line-height: 25px;
 }
@@ -986,7 +988,7 @@ p {
     font-family: var(--medium);
     font-size: 20px;
     line-height: 25px;
-    color: var(--white-100);
+    color: var(--white-200);
     opacity: 0;
     visibility: hidden;
     z-index: -1;
@@ -1099,7 +1101,7 @@ p {
     width: 100%;
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-100);
+    color: var(--white-200);
     font-family: var(--regular);
 }
 
@@ -1169,7 +1171,7 @@ p {
     width: 100%;
     font-family: var(--regular);
     font-size: 16px;
-    color: var(--white-100);
+    color: var(--white-200);
     line-height: 21.6px;
     padding-top: 80px;
 }
@@ -1179,7 +1181,7 @@ p {
     border: none;
     font-size: 54px;
     line-height: 59.4px;
-    color: var(--white-100);
+    color: var(--white-200);
     display: flex;
     align-items: flex-end;
     text-align: left;
@@ -1227,7 +1229,7 @@ p {
 
 .c-form__form span {
     font-family: var(--regular);
-    color: var(--white-100);
+    color: var(--white-200);
     font-size: 16px;
     line-height: 21.6px;
 }
@@ -1241,12 +1243,16 @@ p {
 
 }
 
+input::placeholder {
+    color: var(--blacked-text);
+}
+
 .c-form__input input {
     background: inherit;
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid var(--gray-400);
+    border-bottom: 1px solid var(--blacked-text);
     color: var(--gray-400);
     font-family: var(--medium);
     font-size: 20px;
@@ -1255,7 +1261,7 @@ p {
     display: flex;
     align-items: center;
     width: 100%;
-    color: var(--white-100);
+    color: var(--white);
 }
 
 .c-form__btn {
@@ -1368,7 +1374,7 @@ p {
 }
 
 .c-footer__bottom-item {
-    color: var(--gray-400);
+    color: var(--blacked-text);
     font-size: 16px;
     line-height: 21.6px;
     font-family: var(--regular);
@@ -1377,7 +1383,7 @@ p {
 }
 
 a.c-footer__bottom-item:hover {
-    color: var(--white-100);
+    color: var(--white);
 }
 
 .c-modal {
@@ -1564,7 +1570,7 @@ a.c-footer__bottom-item:hover {
 
 .c-modal__text {
     font-family: var(--medium);
-    color: var(--white-100);
+    color: var(--white);
     font-size: 20px;
     line-height: 25px;
 }
@@ -1594,7 +1600,7 @@ a.c-footer__bottom-item:hover {
 
 .c-modal__form-group form span {
     font-family: var(--regular);
-    color: var(--white-100);
+    color: var(--white);
     font-size: 16px;
     line-height: 21.6px;
 }
@@ -1621,7 +1627,7 @@ a.c-footer__bottom-item:hover {
     display: flex;
     align-items: center;
     width: 100%;
-    color: var(--white-100);
+    color: var(--white-200);
 }
 
 .c-modal__form-btn {
