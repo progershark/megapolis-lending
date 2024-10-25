@@ -1529,6 +1529,15 @@ a.c-footer__bottom-item:hover {
 
 }
 
+.c-modal__video {
+
+}
+
+.c-modal__video iframe {
+    width: 1000px;
+    height: 562px;
+}
+
 .c-modal__window .img {
     border-radius: 20px;
     width: 100%;
@@ -1640,4 +1649,8 @@ span.wpcf7-not-valid-tip {
 
 .wpcf7-response-output {
     display: none;
+}
+
+.playButton.svelte-17wno3.svelte-17wno3 {
+    opacity: 0 !important;
 }

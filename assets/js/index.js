@@ -91,7 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
     btnModalClose.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.c-modal');
+            const iframe = modal.querySelector('iframe');
+
             hideModal(modal);
+
+            if (iframe) {
+                const currentSrc = iframe.src;
+                iframe.src = '';
+                iframe.src = currentSrc;
+            }
         });
     });
 
@@ -402,6 +410,8 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapProcess.addEventListener('touchmove', handleScroll);
     header.addEventListener('wheel', handleScroll);
     header.addEventListener('touchmove', handleScroll);
+
+
 
     // Определяем Ос
     if (navigator.userAgent.indexOf("Win") != -1) {
