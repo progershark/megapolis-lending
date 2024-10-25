@@ -350,36 +350,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     totalWidth += gapValue * (itemCount - 1) + processPaddingX;
 
-    //process.style.width = `${totalWidth}px`;
-
+// Шаг прокрутки равен ширине элемента с учетом промежутка
+    const scrollStep = processItems[0].offsetWidth + gapValue;
     const horizontalScroll = totalWidth - window.innerWidth;
 
-    let scrollDisabled = false;
-
     let lastScrollTime = 0;
-    let scrollAccumulator = 0;
+    const scrollDelay = 300; // Задержка между прокрутками
 
     function handleScroll(event) {
-        if(isElementAtBottom(wrapProcess)) {
-            const currentTime = performance.now();
-            const timeDelta = currentTime - lastScrollTime;
-            lastScrollTime = currentTime;
+        const currentTime = performance.now();
+        const timeSinceLastScroll = currentTime - lastScrollTime;
 
-            const scrollSpeed = Math.abs(event.deltaY) / timeDelta;
-            const scrollAmount = Math.min(scrollSpeed * 50, 50);
+        // Проверяем, достаточно ли времени прошло с последнего скролла
+        if (timeSinceLastScroll < scrollDelay) return;
 
+        if (isElementAtBottom(wrapProcess)) {
+            // Проверяем направление прокрутки
             if (event.deltaY > 0 && horizontalScrollAmount > (horizontalScroll * -1)) {
-                scrollAccumulator += scrollAmount;
-                horizontalScrollAmount -= scrollAmount;
-                scrollDisabled = true;
+                horizontalScrollAmount -= scrollStep; // Прокручиваем на шаг
+                event.preventDefault(); // Блокируем стандартное поведение скролла
             } else if (event.deltaY < 0 && horizontalScrollAmount < 0) {
-                scrollAccumulator += scrollAmount;
-                horizontalScrollAmount += scrollAmount;
-                scrollDisabled = true;
-            } else {
-                scrollDisabled = false;
+                horizontalScrollAmount += scrollStep; // Прокручиваем на шаг
+                event.preventDefault(); // Блокируем стандартное поведение скролла
             }
 
+            // Ограничиваем прокрутку по краям
             if (horizontalScrollAmount > 0) {
                 horizontalScrollAmount = 0;
             }
@@ -388,28 +383,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 horizontalScrollAmount = horizontalScroll * -1;
             }
 
+            // Применяем трансформацию
             process.style.transform = `translateX(${horizontalScrollAmount}px)`;
 
-            if (scrollDisabled) {
-                event.preventDefault();
-            }
-
-            // для полосы бара
+            // Обновление полосы прокрутки
             const positiveScrollAmount = Math.abs(horizontalScrollAmount);
             const percentage = (positiveScrollAmount / horizontalScroll) * 100;
-
             processBar.style.width = `${percentage.toFixed(2)}%`;
+
+            // Сохраняем время последнего скролла
+            lastScrollTime = currentTime;
+
+            // Разрешаем вертикальную прокрутку, если достигли последнего элемента
+            if (horizontalScrollAmount <= (horizontalScroll * -1)) {
+                // Здесь вы можете добавить любой другой код, который хотите выполнить при достижении последнего элемента
+            }
         }
     }
 
+    function handleTouchMove(event) {
+        const touch = event.touches[0]; // Получаем первое касание
+        // Проверяем направление прокрутки
+        if (touch.clientY > wrapProcess.getBoundingClientRect().top && touch.clientY < wrapProcess.getBoundingClientRect().bottom) {
+            // Если касание в пределах обертки, блокируем прокрутку страницы
+            event.preventDefault();
+        }
+    }
+
+// Проверяем, нужно ли добавлять обработчики событий скролла
     if (totalWidth <= wrapProcess.offsetWidth) {
         return;
     }
 
     wrapProcess.addEventListener('wheel', handleScroll);
-    wrapProcess.addEventListener('touchmove', handleScroll);
+    wrapProcess.addEventListener('touchmove', handleTouchMove); // Добавляем обработчик для touchmove
     header.addEventListener('wheel', handleScroll);
-    header.addEventListener('touchmove', handleScroll);
+    header.addEventListener('touchmove', handleTouchMove); // Добавляем обработчик для touchmove
+
+
+
 
 
 

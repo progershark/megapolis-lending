@@ -569,7 +569,7 @@ p {
 }
 
 .mac .c-banner__process{
-    transition: transform 0.3s ease-out;
+    transition: transform 0.8s ease-out;
 }
 
 .windows .c-banner__process {
@@ -637,14 +637,11 @@ p {
     width: max-content;
     border-radius: 3px;
     background: var(--white);
+    transition: 0.8s;
 }
 
-.mac .c-banner__process-bar span {
-    transition: transform 0.3s ease-out;
-}
-
-.windows .c-banner__process-bar span {
-    transition: transform 0.8s ease-out;
+.no-scroll {
+    overflow: hidden !important;
 }
 
 .c-banner__info {
@@ -1225,6 +1222,11 @@ p {
 
 .c-form__title {
     padding-bottom: 34px;
+}
+
+#wpcf7-f383-o1 {
+    margin-top: -60px;
+    margin-bottom: -60px;
 }
 
 .c-form__form {
