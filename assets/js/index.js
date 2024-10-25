@@ -337,91 +337,73 @@ document.addEventListener('DOMContentLoaded', () => {
     // Banner process top
     const wrapProcess = document.querySelector('.processScrollMain');
     const process = document.querySelector('.processScroll');
-    const processStyle = window.getComputedStyle(process);
-    const processPaddingX = parseFloat(processStyle.paddingLeft) + parseFloat(processStyle.paddingRight);
     const processItems = process.querySelectorAll('.processScrollItem');
     const processBar = document.querySelector('.processBar span');
 
+    // Рассчитываем отступы и промежуток
     const gapValue = parseFloat(window.getComputedStyle(process).gap);
+    const processPaddingX = ['paddingLeft', 'paddingRight']
+        .map(side => parseFloat(window.getComputedStyle(process)[side]))
+        .reduce((a, b) => a + b);
+
     let horizontalScrollAmount = 0;
-
-    const itemCount = processItems.length;
-    let totalWidth = Array.from(processItems).reduce((sum, item) => sum + item.offsetWidth, 0);
-
-    totalWidth += gapValue * (itemCount - 1) + processPaddingX;
-
-// Шаг прокрутки равен ширине элемента с учетом промежутка
-    const scrollStep = processItems[0].offsetWidth + gapValue;
-    const horizontalScroll = totalWidth - window.innerWidth;
-
+    let shouldPreventDefault = true;
     let lastScrollTime = 0;
-    const scrollDelay = 300; // Задержка между прокрутками
+    const scrollDelay = 800; // Задержка между скроллами
+    const scrollStep = processItems[0].offsetWidth + gapValue;
+
+    // Рассчитываем общую ширину контента и максимальный горизонтальный скролл
+    const totalWidth = Array.from(processItems)
+            .reduce((sum, item) => sum + item.offsetWidth, 0)
+        + gapValue * (processItems.length - 1) + processPaddingX;
+    const maxHorizontalScroll = totalWidth - wrapProcess.offsetWidth;
+    const isScrollable = maxHorizontalScroll > 0;
 
     function handleScroll(event) {
+        if (shouldPreventDefault && isElementAtBottom(wrapProcess)) {
+            event.preventDefault();
+        }
+
         const currentTime = performance.now();
         const timeSinceLastScroll = currentTime - lastScrollTime;
-
-        // Проверяем, достаточно ли времени прошло с последнего скролла
-        if (timeSinceLastScroll < scrollDelay) return;
+        if (timeSinceLastScroll < scrollDelay) return; // Пропускаем, если задержка не прошла
 
         if (isElementAtBottom(wrapProcess)) {
-            // Проверяем направление прокрутки
-            if (event.deltaY > 0 && horizontalScrollAmount > (horizontalScroll * -1)) {
-                horizontalScrollAmount -= scrollStep; // Прокручиваем на шаг
-                event.preventDefault(); // Блокируем стандартное поведение скролла
+            if (event.deltaY > 0 && horizontalScrollAmount > -maxHorizontalScroll) {
+                horizontalScrollAmount = Math.max(horizontalScrollAmount - scrollStep, -maxHorizontalScroll);
+                shouldPreventDefault = true;
             } else if (event.deltaY < 0 && horizontalScrollAmount < 0) {
-                horizontalScrollAmount += scrollStep; // Прокручиваем на шаг
-                event.preventDefault(); // Блокируем стандартное поведение скролла
+                horizontalScrollAmount = Math.min(horizontalScrollAmount + scrollStep, 0);
+                shouldPreventDefault = true;
             }
 
-            // Ограничиваем прокрутку по краям
-            if (horizontalScrollAmount > 0) {
-                horizontalScrollAmount = 0;
-            }
-
-            if (horizontalScrollAmount < (horizontalScroll * -1)) {
-                horizontalScrollAmount = horizontalScroll * -1;
-            }
-
-            // Применяем трансформацию
             process.style.transform = `translateX(${horizontalScrollAmount}px)`;
 
-            // Обновление полосы прокрутки
-            const positiveScrollAmount = Math.abs(horizontalScrollAmount);
-            const percentage = (positiveScrollAmount / horizontalScroll) * 100;
-            processBar.style.width = `${percentage.toFixed(2)}%`;
+            const scrollPercentage = Math.abs(horizontalScrollAmount) / maxHorizontalScroll * 100;
+            processBar.style.width = `${scrollPercentage.toFixed(2)}%`;
 
-            // Сохраняем время последнего скролла
             lastScrollTime = currentTime;
 
-            // Разрешаем вертикальную прокрутку, если достигли последнего элемента
-            if (horizontalScrollAmount <= (horizontalScroll * -1)) {
-                // Здесь вы можете добавить любой другой код, который хотите выполнить при достижении последнего элемента
+            if (horizontalScrollAmount <= -maxHorizontalScroll) {
+                shouldPreventDefault = false;
             }
         }
     }
 
     function handleTouchMove(event) {
-        const touch = event.touches[0]; // Получаем первое касание
-        // Проверяем направление прокрутки
-        if (touch.clientY > wrapProcess.getBoundingClientRect().top && touch.clientY < wrapProcess.getBoundingClientRect().bottom) {
-            // Если касание в пределах обертки, блокируем прокрутку страницы
+        const touch = event.touches[0];
+        const wrapRect = wrapProcess.getBoundingClientRect();
+        if (touch.clientY > wrapRect.top && touch.clientY < wrapRect.bottom) {
             event.preventDefault();
         }
     }
 
-// Проверяем, нужно ли добавлять обработчики событий скролла
-    if (totalWidth <= wrapProcess.offsetWidth) {
-        return;
+    if (isScrollable) {
+        wrapProcess.addEventListener('wheel', handleScroll);
+        wrapProcess.addEventListener('touchmove', handleTouchMove);
+        header.addEventListener('wheel', handleScroll);
+        header.addEventListener('touchmove', handleTouchMove);
     }
-
-    wrapProcess.addEventListener('wheel', handleScroll);
-    wrapProcess.addEventListener('touchmove', handleTouchMove); // Добавляем обработчик для touchmove
-    header.addEventListener('wheel', handleScroll);
-    header.addEventListener('touchmove', handleTouchMove); // Добавляем обработчик для touchmove
-
-
-
 
 
 
