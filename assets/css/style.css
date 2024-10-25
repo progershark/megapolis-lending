@@ -1,24 +1,18 @@
 @font-face {
     font-family: "Medium";
-    src: url(../../assets/fonts/Cygre/Cygre-Medium.ttf) format("truetype");
+    src: url(../../assets/fonts/NTSomic/NTSomic-Medium.woff2) format("woff2"),
+    url(../../assets/fonts/NTSomic/NTSomic-Medium.ttf) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Regular";
-    src: url(../../assets/fonts/Cygre/Cygre-Regular.ttf) format("truetype");
+    src: url(../../assets/fonts/NTSomic/NTSomic-Regular.woff2) format("woff2"),
+    url(../../assets/fonts/NTSomic/NTSomic-Regular.ttf) format("truetype");
     font-weight: normal;
     font-style: normal;
 }
-
-@font-face {
-    font-family: "Light";
-    src: url(../../assets/fonts/Cygre/Cygre-Light.ttf) format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
-
 
 * {
     box-sizing: border-box;
@@ -55,10 +49,10 @@
     --phone: 480px;
 }
 
-.mac {
+/*.mac {
     --medium: "Regular";
     --regular: "Light";
-}
+}*/
 
 /* Стили для Chrome, Safari, Edge */
 input:-webkit-autofill,
@@ -262,10 +256,6 @@ p {
     padding: 10px 30px;
     height: 62px;
     border: none;
-}
-
-.mac .c-btn {
-    padding: 10px 30px 15px;
 }
 
 .c-btn__accent {
