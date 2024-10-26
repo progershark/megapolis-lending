@@ -385,7 +385,9 @@ document.addEventListener('DOMContentLoaded', () => {
             lastScrollTime = currentTime;
 
             if (horizontalScrollAmount <= -maxHorizontalScroll) {
-                shouldPreventDefault = false;
+                setTimeout(function tick() {
+                    shouldPreventDefault = false;
+                }, 1000);
             }
         }
     }
