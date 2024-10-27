@@ -653,7 +653,7 @@ p {
     }
 }
 
-@media only screen and (max-height: 767px) {
+@media only screen and (max-width: 767px) {
     .c-banner__top {
         padding-top: 6px;
     }
@@ -703,13 +703,19 @@ p {
     z-index: 2;
 }
 
+@media only screen and (max-width: 1024px) {
+    .c-banner__footer > *:last-of-type {
+        flex-shrink: 0;
+    }
+}
+
 @media only screen and (max-height: 960px) {
     .c-banner__footer {
         padding-bottom: 30px;
     }
 }
 
-@media only screen and (max-height: 767px) {
+@media only screen and (max-width: 767px) {
     .c-banner__footer {
         flex-direction: column-reverse;
         gap: 15px;
@@ -722,7 +728,7 @@ p {
     width: 100%;
 }
 
-@media only screen and (max-height: 767px) {
+@media only screen and (max-width: 767px) {
     .c-banner__wrap-btn-footer {
         max-width: 100%;
     }
@@ -826,12 +832,16 @@ p {
     left: 0;
     width: max-content;
     padding-left: 40%;
-    padding-right: 23%;
 }
 
 @media only screen and (max-width: 1440px) {
     .c-banner__process {
-        padding-right: 11%;
+        padding-left: 42%;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .c-banner__process {
     }
 }
 
@@ -852,18 +862,25 @@ p {
 }
 
 .c-banner__process-item {
-
+    max-width: 700px;
 }
 
-@media only screen and (max-width: 1280px) {
+.c-banner__process-item .overflowWrapHidden {
+    width: auto;
+}
+
+.c-banner__process-item img {
+    width: 100%;
+}
+
+@media only screen and (max-width: 1440px) {
     .c-banner__process-item {
-        transform: scale(0.9)
+
     }
 }
 
 @media only screen and (max-width: 1024px) {
     .c-banner__process-item {
-        transform: scale(1);
         max-width: 440px;
         width: 100%;
     }
@@ -876,14 +893,13 @@ p {
 
 @media only screen and (max-width: 991px) {
     .c-banner__process-item {
-        transform: scale(0.8);
+
     }
 }
 
 @media only screen and (max-width: 767px) {
     .c-banner__process-item {
-        transform: scale(1);
-        max-width: 285px;
+        max-width: 77vw;
     }
 }
 
@@ -895,8 +911,7 @@ p {
 @media only screen and (max-height: 960px) {
     .c-banner__process-item img {
         object-fit: cover;
-        transform: scale(0.9);
-        margin-top: -40px;
+        margin-top: -20px;
     }
 }
 

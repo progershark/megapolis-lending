@@ -342,9 +342,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Рассчитываем отступы и промежуток
     const gapValue = parseFloat(window.getComputedStyle(process).gap);
-    const processPaddingX = ['paddingLeft', 'paddingRight']
-        .map(side => parseFloat(window.getComputedStyle(process)[side]))
-        .reduce((a, b) => a + b);
+    const processPaddingL = parseFloat(window.getComputedStyle(process).paddingLeft);
+    const processPaddingR = window.innerWidth - (processPaddingL + processItems[0].offsetWidth);
+    const processPaddingX = processPaddingL + processPaddingR;
+
+    process.style.paddingRight = `${processPaddingR}px`;
 
     let horizontalScrollAmount = 0;
     let shouldPreventDefault = true;
