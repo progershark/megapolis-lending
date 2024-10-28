@@ -463,6 +463,7 @@ p {
     .c-header {
         padding: 10px var(--px);
         height: 40px;
+        margin-bottom: -40px;
     }
 }
 

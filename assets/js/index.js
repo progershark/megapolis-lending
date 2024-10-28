@@ -407,6 +407,10 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapProcess.addEventListener('touchmove', handleTouchMove);
         header.addEventListener('wheel', handleScroll);
         header.addEventListener('touchmove', handleTouchMove);
+
+        wrapProcess.addEventListener('touchstart', function () {
+            console.log('djfk')
+        });
     }
 
 
