@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     createSlider('.modelsImages', 1000, 100);
-    createSlider('.modelsImages2', 2000, 0);
+    /*createSlider('.modelsImages2', 2000, 0);*/
 
 
 

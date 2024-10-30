@@ -91,6 +91,34 @@
     }
 }
 
+.wrap-btn-banner {
+    max-width: 343px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .wrap-btn-banner {
+        max-width: 230px;
+        width: 100% !important;
+    }
+}
+
+.wrap-btn-banner-2 {
+    max-width: 590px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .wrap-btn-banner-2 {
+        max-width: 436px;
+        width: 100% !important;
+    }
+}
+
 /* Стили для Chrome, Safari, Edge */
 input:-webkit-autofill,
 textarea:-webkit-autofill,
@@ -319,10 +347,10 @@ h3 {
 }
 
 p {
-    font-family: var(--regular);
+    /*font-family: var(--regular);
     font-size: 16px;
     line-height: 21.6px;
-    color: var(--white-200);
+    color: var(--white-200);*/
     margin: 0;
 }
 
@@ -567,13 +595,20 @@ p {
 
 @media only screen and (max-width: 1024px) {
     .c-banner {
-        min-height: max-content;
+        min-height: 550px;
+        height: max-content;
     }
 }
 
 .c-banner__img {
     padding-top: 0;
     padding-bottom: 80px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-banner__img {
+        padding-bottom: 10px;
+    }
 }
 
 .c-banner__btn-left {
@@ -594,8 +629,9 @@ p {
     margin-left: calc((100vw - 100%) / 2 * -1);
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1024px) {
     .banner__gif {
+        height: max-content;
         min-height: 550px;
     }
 }
@@ -627,6 +663,12 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) {
+    .banner__gif-video {
+        min-height: 550px;
+    }
 }
 
 .banner__gif img {
@@ -677,7 +719,7 @@ p {
     line-height: 223px;
     margin-bottom: 73px;
     color: var(--gray-500);
-    letter-spacing: 4%;
+    margin-left: -36px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -685,6 +727,7 @@ p {
         font-size: 180px;
         line-height: 180px;
         margin-bottom: 15px;
+        margin-left: -16px;
     }
 }
 
@@ -706,7 +749,6 @@ p {
 
 @media only screen and (max-width: 1024px) {
     .c-banner__footer > *:last-of-type {
-        flex-shrink: 0;
     }
 }
 
@@ -727,6 +769,14 @@ p {
 .c-banner__wrap-btn-footer {
     max-width: 343px;
     width: 100%;
+    flex-shrink: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-banner__wrap-btn-footer {
+        max-width: max-content;
+        flex-shrink: 0;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -792,6 +842,12 @@ p {
     height: 2px;
     background: var(--white);
     order: 1;
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-banner__footer-span:after {
+        max-width: 100px;
+    }
 }
 
 .mac .c-banner__footer-span:after {
@@ -2390,6 +2446,12 @@ a.c-footer__bottom-item:hover {
     min-height: 960px;
 }
 
+@media only screen and (max-width: 1024px) {
+    .c-modal:before {
+        min-height: 590px;
+    }
+}
+
 .c-modal__cover {
     position: absolute;
     width: 100%;
@@ -2426,46 +2488,19 @@ a.c-footer__bottom-item:hover {
     transform: translateY(0); /* Конечное состояние */
 }
 
-@media screen and (max-width: 991px) {
-    /* Общие стили для модального окна */
-    .c-modal {
-        width: 100%;
-        max-width: 393px;
-        opacity: 1;
-        transition: opacity 0.3s ease;
-    }
-
-    /* Анимация перемещения и исчезновения */
-    .c-modal.fade-out .c-modal__wrap {
-        animation: slideDown 0.5s ease forwards;
-    }
-
-    .c-modal.fade-out {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    /* Анимация перемещения вниз */
-    @keyframes slideDown {
-        0% {
-            transform: translateY(0); /* Начальное положение */
-        }
-        100% {
-            transform: translateY(2000px); /* Перемещение вниз */
-        }
-    }
-
-    @media screen and (max-width: 991px) {
-        .c-modal.fade-out .c-modal__wrap {
-            /* Перемещение вниз на мобильных устройствах */
-            animation: slideDown 0.5s ease forwards;
-        }
-    }
-}
-
 .c-modal__wrap {
     border-radius: 20px;
     position: relative;
+    margin-left: var(--py);
+    margin-right: var(--py);
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-modal__wrap {
+        max-width: 650px;
+        width: 100%;
+        margin: 0 auto;
+    }
 }
 
 .c-modal__wrap.min-h {
@@ -2492,12 +2527,6 @@ a.c-footer__bottom-item:hover {
     justify-content: center;
 }
 
-@media screen and (max-width: 991px) {
-    .c-modal__wrap {
-        max-width: 393px;
-    }
-}
-
 .c-modal__open-close {
     position: absolute;
     top: -6px;
@@ -2507,17 +2536,43 @@ a.c-footer__bottom-item:hover {
     background: none;
 }
 
-.c-modal__window {
+@media screen and (max-width: 1024px) {
+    .c-modal__open-close {
+        display: none;
+    }
+}
 
+.c-modal__window {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .c-modal__video {
 
 }
 
+@media screen and (max-width: 1024px) {
+    .c-modal__video {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 .c-modal__video iframe {
     width: 1000px;
     height: 562px;
+    flex-shrink: 0;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .c-modal__video iframe {
+        width: 665px;
+        height: 370px;
+    }
 }
 
 .c-modal__window .img {
@@ -2556,6 +2611,16 @@ a.c-footer__bottom-item:hover {
     width: 50%
 }
 
+@media only screen and (max-width: 1024px) {
+    .c-modal__form-group:first-of-type {
+        width: 46%;
+    }
+
+    .c-modal__form-group:last-of-type {
+        width: 54%;
+    }
+}
+
 .c-modal__form-group img {
     width: 100%;
     height: 100%;
@@ -2570,6 +2635,13 @@ a.c-footer__bottom-item:hover {
     gap: 24px;
 }
 
+@media only screen and (max-width: 1024px) {
+    .c-modal__form-form {
+        padding: 24px;
+        gap: 12px;
+    }
+}
+
 .c-modal__form-form p button {
     margin-top: 24px;
 }
@@ -2579,6 +2651,13 @@ a.c-footer__bottom-item:hover {
     color: var(--white);
     font-size: 16px;
     line-height: 21.6px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-modal__form-group form span {
+        font-size: 14px;
+        line-height: 18.9px;
+    }
 }
 
 .c-modal__form-title {
@@ -2604,6 +2683,14 @@ a.c-footer__bottom-item:hover {
     align-items: center;
     width: 100%;
     color: var(--white-200);
+}
+
+@media only screen and (max-width: 1024px) {
+    .c-modal__form-input input {
+        font-size: 16px;
+        line-height: 21.6px;
+        height: 27px;
+    }
 }
 
 .c-modal__form-btn {
