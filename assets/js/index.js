@@ -9,8 +9,27 @@ function isElementAtTop(element) {
     return rect.top === 0;
 }
 
+
+function resetGallery(item) {
+    const galleryContainer = item.querySelector('.galleryContainer');
+    const galleryImages = galleryContainer.querySelectorAll('img');
+    const counter = item.querySelector('.galleryCounter');
+    galleryImages.forEach((img, i) => {
+        img.classList.remove('active');
+    });
+    if (galleryImages.length > 0) {
+        galleryImages[0].classList.add('active');
+    }
+    if (counter) {
+        counter.textContent = `1 / ${galleryImages.length}`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    const body = document.querySelector('body');
+    AOS.init({
+        once: true
+    });
+
     const header = document.querySelector('.c-header');
 
     // Активный класс на карточку слайдера
@@ -24,7 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const items = card.querySelectorAll('.c-product__cards-item');
                 items.forEach(item => {
                     if (item === targetItem && !item.classList.contains('active')) {
-                        items.forEach(i => i.classList.remove('active'));
+                        items.forEach(i => {
+                            if (i.classList.contains('active')) {
+                                resetGallery(i);
+                            }
+                            i.classList.remove('active')
+                        });
                         item.classList.add('active');
                     }
                 });
@@ -62,8 +86,25 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(showNextImage, interval);
     }
 
-    createSlider('.modelsImages', 1000, 100);
+    createSlider('.modelsImages', 1500, 100);
     /*createSlider('.modelsImages2', 2000, 0);*/
+
+
+
+    // Menu
+    document.querySelectorAll('.btnMenuBurger, .contentMenuBurger .c-header__menu-nav ul li a').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const contentMenuBurger = document.querySelector('.contentMenuBurger');
+            if(contentMenuBurger.classList.contains('fade-in')) {
+                hideModal(contentMenuBurger);
+                document.body.style.overflow = 'inherit';
+            } else {
+                showModal(contentMenuBurger);
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
 
 
 
@@ -140,11 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateFormStatusModal(type) {
         if (type === 'success') {
             formStatusTitle.textContent = 'Спасибо за вашу заявку! Ваши данные успешно отправлены.';
-            formStatusText.innerHTML = 'Мы свяжемся с вами в ближайшее время, чтобы <br> обсудить все детали. Если у вас возникли <br> вопросы, вы <br> всегда можете обратиться к нам.';
+            formStatusText.innerHTML = 'Мы свяжемся с вами в ближайшее время, чтобы <br class="mob-hidden"> обсудить все детали. Если у вас возникли вопросы, <br> вы всегда можете обратиться к нам.';
             formStatusButton.textContent = 'Закрыть';
         } else if (type === 'error') {
             formStatusTitle.textContent = 'Ошибка при отправке данных';
-            formStatusText.innerHTML = 'К сожалению, не удалось отправить ваши данные. <br> Попробуйте отправить данные еще раз. <br> Если проблема <br> повторится, свяжитесь с нами по телефону <br> +7 800 511 41 54';
+            formStatusText.innerHTML = 'К сожалению, не удалось отправить ваши данные. Попробуйте отправить данные еще раз. Если проблема повторится, свяжитесь с нами по телефону: <br> +7 995 090 88 22';
             formStatusButton.textContent = 'Попробовать снова';
             formStatusButton.addEventListener('click', () => {
                 hideModal(formStatusModal);
@@ -336,83 +377,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Banner process top
     const wrapProcess = document.querySelector('.processScrollMain');
-    const process = document.querySelector('.processScroll');
-    const processItems = process.querySelectorAll('.processScrollItem');
-    const processBar = document.querySelector('.processBar span');
 
-    // Рассчитываем отступы и промежуток
-    const gapValue = parseFloat(window.getComputedStyle(process).gap);
-    const processPaddingL = parseFloat(window.getComputedStyle(process).paddingLeft);
-    const processPaddingR = window.innerWidth - (processPaddingL + processItems[0].offsetWidth);
-    const processPaddingX = processPaddingL + processPaddingR;
+    if(wrapProcess) {
+        const process = document.querySelector('.processScroll');
+        const processItems = process.querySelectorAll('.processScrollItem');
+        const processBar = document.querySelector('.processBar span');
 
-    process.style.paddingRight = `${processPaddingR}px`;
+        // Рассчитываем отступы и промежуток
+        const gapValue = parseFloat(window.getComputedStyle(process).gap);
+        const processPaddingL = parseFloat(window.getComputedStyle(process).paddingLeft);
+        const processPaddingR = window.innerWidth - (processPaddingL + processItems[0].offsetWidth);
+        const processPaddingX = processPaddingL + processPaddingR;
 
-    let horizontalScrollAmount = 0;
-    let shouldPreventDefault = true;
-    let lastScrollTime = 0;
-    const scrollDelay = 800; // Задержка между скроллами
-    const scrollStep = processItems[0].offsetWidth + gapValue;
+        process.style.paddingRight = `${processPaddingR}px`;
 
-    // Рассчитываем общую ширину контента и максимальный горизонтальный скролл
-    const totalWidth = Array.from(processItems)
-            .reduce((sum, item) => sum + item.offsetWidth, 0)
-        + gapValue * (processItems.length - 1) + processPaddingX;
-    const maxHorizontalScroll = totalWidth - wrapProcess.offsetWidth;
-    const isScrollable = maxHorizontalScroll > 0;
+        let horizontalScrollAmount = 0;
+        let shouldPreventDefault = true;
+        let lastScrollTime = 0;
+        const scrollDelay = 800; // Задержка между скроллами
+        const scrollStep = processItems[0].offsetWidth + gapValue;
 
-    function handleScroll(event) {
-        if (shouldPreventDefault && isElementAtBottom(wrapProcess)) {
-            event.preventDefault();
+        // Рассчитываем общую ширину контента и максимальный горизонтальный скролл
+        const totalWidth = Array.from(processItems)
+                .reduce((sum, item) => sum + item.offsetWidth, 0)
+            + gapValue * (processItems.length - 1) + processPaddingX;
+        const maxHorizontalScroll = totalWidth - wrapProcess.offsetWidth;
+        const isScrollable = maxHorizontalScroll > 0;
+
+        function handleScroll(event) {
+            if (shouldPreventDefault && isElementAtBottom(wrapProcess)) {
+                event.preventDefault();
+            }
+
+            const currentTime = performance.now();
+            const timeSinceLastScroll = currentTime - lastScrollTime;
+            if (timeSinceLastScroll < scrollDelay) return; // Пропускаем, если задержка не прошла
+
+            if (isElementAtBottom(wrapProcess)) {
+                if (event.deltaY > 0 && horizontalScrollAmount > -maxHorizontalScroll) {
+                    horizontalScrollAmount = Math.max(horizontalScrollAmount - scrollStep, -maxHorizontalScroll);
+                    shouldPreventDefault = true;
+                } else if (event.deltaY < 0 && horizontalScrollAmount < 0) {
+                    horizontalScrollAmount = Math.min(horizontalScrollAmount + scrollStep, 0);
+                    shouldPreventDefault = true;
+                }
+
+                process.style.transform = `translateX(${horizontalScrollAmount}px)`;
+
+                const scrollPercentage = Math.abs(horizontalScrollAmount) / maxHorizontalScroll * 100;
+                processBar.style.width = `${scrollPercentage.toFixed(2)}%`;
+
+                lastScrollTime = currentTime;
+
+                if (horizontalScrollAmount <= -maxHorizontalScroll) {
+                    setTimeout(function tick() {
+                        shouldPreventDefault = false;
+                    }, 1000);
+                }
+            }
         }
 
-        const currentTime = performance.now();
-        const timeSinceLastScroll = currentTime - lastScrollTime;
-        if (timeSinceLastScroll < scrollDelay) return; // Пропускаем, если задержка не прошла
+        function handleTouchMove(event) {
+            const touch = event.touches[0];
+            const wrapRect = wrapProcess.getBoundingClientRect();
+            if (touch.clientY > wrapRect.top && touch.clientY < wrapRect.bottom) {
+                event.preventDefault();
+            }
+        }
 
-        if (isElementAtBottom(wrapProcess)) {
-            if (event.deltaY > 0 && horizontalScrollAmount > -maxHorizontalScroll) {
+        function autoScroll() {
+            if (horizontalScrollAmount > -maxHorizontalScroll) {
                 horizontalScrollAmount = Math.max(horizontalScrollAmount - scrollStep, -maxHorizontalScroll);
-                shouldPreventDefault = true;
-            } else if (event.deltaY < 0 && horizontalScrollAmount < 0) {
-                horizontalScrollAmount = Math.min(horizontalScrollAmount + scrollStep, 0);
-                shouldPreventDefault = true;
-            }
+                process.style.transform = `translateX(${horizontalScrollAmount}px)`;
 
-            process.style.transform = `translateX(${horizontalScrollAmount}px)`;
-
-            const scrollPercentage = Math.abs(horizontalScrollAmount) / maxHorizontalScroll * 100;
-            processBar.style.width = `${scrollPercentage.toFixed(2)}%`;
-
-            lastScrollTime = currentTime;
-
-            if (horizontalScrollAmount <= -maxHorizontalScroll) {
-                setTimeout(function tick() {
-                    shouldPreventDefault = false;
-                }, 1000);
+                const scrollPercentage = Math.abs(horizontalScrollAmount) / maxHorizontalScroll * 100;
+                processBar.style.width = `${scrollPercentage.toFixed(2)}%`;
+            } else {
+                horizontalScrollAmount = 0; // Сброс скролла
+                process.style.transform = `translateX(${horizontalScrollAmount}px)`;
+                processBar.style.width = '0%';
             }
         }
-    }
 
-    function handleTouchMove(event) {
-        const touch = event.touches[0];
-        const wrapRect = wrapProcess.getBoundingClientRect();
-        if (touch.clientY > wrapRect.top && touch.clientY < wrapRect.bottom) {
-            event.preventDefault();
+        function combinedInterval() {
+            autoScroll();
+            showNextItem();
         }
+
+        if (window.innerWidth > 768 && isScrollable) {
+            wrapProcess.addEventListener('wheel', handleScroll);
+            wrapProcess.addEventListener('touchmove', handleTouchMove);
+            header.addEventListener('wheel', handleScroll);
+            header.addEventListener('touchmove', handleTouchMove);
+        } else if (isScrollable) {
+            setInterval(combinedInterval, 3000);
+        }
+
+
+
+        // переключаем каждые 3 секунды блоки внизу баннера
+        const items = document.querySelectorAll('.c-banner__info-item');
+        let currentIndex = 0;
+        let intervalId;
+
+        function showNextItem() {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % items.length;
+            items[currentIndex].classList.add('active');
+        }
+
+        function startSlider() {
+            items[currentIndex].classList.add('active');
+            //intervalId = setInterval(showNextItem, 3000);
+        }
+
+        function stopSlider() {
+            clearInterval(intervalId);
+            items.forEach(item => item.classList.remove('active'));
+        }
+
+        function checkScreenSize() {
+            if (window.innerWidth < 768) {
+                startSlider();
+            } else {
+                stopSlider();
+            }
+        }
+
+        checkScreenSize();
+
+        window.addEventListener('resize', checkScreenSize);
     }
-
-    if (isScrollable) {
-        wrapProcess.addEventListener('wheel', handleScroll);
-        wrapProcess.addEventListener('touchmove', handleTouchMove);
-        header.addEventListener('wheel', handleScroll);
-        header.addEventListener('touchmove', handleTouchMove);
-
-        wrapProcess.addEventListener('touchstart', function () {
-            console.log('djfk')
-        });
-    }
-
 
 
     // Определяем Ос

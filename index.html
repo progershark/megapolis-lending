@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="assets/vendor/aos-master/aos.css">
     <link rel="stylesheet" href="assets/css/style.css?v=1.0.14">
 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
     <script src="assets/vendor/aos-master/aos.js"></script>
     <script src="assets/js/index.js?v=1.0.8"></script>
-    <script src="assets/js/loading.js?v=1.0.1"></script>
+    <!--<script src="assets/js/loading.js?v=1.0.1"></script>-->
 </head>
 <body>
 <div id="content">
@@ -37,6 +38,45 @@
                     <li><a href="tel:+7 (988) 256 45 86">+7 (988) 256 45 86</a></li>
                 </ul>
             </nav>
+            <div class="c-header__menu">
+                <button class="c-header__menu-btn btnMenuBurger">
+                    <img src="assets/icon/menu-open.svg" alt="img">
+                </button>
+                <div class="c-header__menu-block contentMenuBurger">
+                    <div class="c-header__menu-header">
+                        <a class="c-header__menu-logo" href="/">
+                            <img src="assets/icon/logo.svg" alt="logo">
+                        </a>
+                        <button class="c-header__menu-btn btnMenuBurger">
+                            <img src="assets/icon/menu-close.svg" alt="img">
+                        </button>
+                    </div>
+                    <nav class="c-header__menu-nav">
+                        <ul>
+                            <li><a href="#products">Продукция</a></li>
+                            <li><a href="#projects">Проекты</a></li>
+                            <li><a href="#about">О компании</a></li>
+                            <li><a href="#contacts">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="grow"></div>
+                    <nav class="c-header__menu-contact">
+                        <ul>
+                            <li><a href="mailto:info@megapolisgroup.spb.ru">info@megapolisgroup.spb.ru</a></li>
+                            <li><a href="tel:+7 800 511 41 54">+7 800 511 41 54</a></li>
+                            <li><a href="tel:+7 812 565 13 48">+7 812 565 13 48</a></li>
+                        </ul>
+                    </nav>
+                    <div class="overflowWrapHidden c-banner__wrap-btn-footer">
+                        <div data-aos="fade" data-aos-anchor-placement="bottom-bottom" data-aos-duration="2500" class="aos-init aos-animate">
+                            <button
+                                class="c-banner__btn c-btn c-btn__opacity btnTriggerPopup"
+                                data-target="project-costing">Рассчитать проект
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -104,9 +144,9 @@
                                  data-aos="fade"
                                  data-aos-anchor-placement="bottom-bottom"
                                  data-aos-duration="1500"><span></span></div>
-                            <div class="overflowWrapHidden">
+                            <div class="overflowWrapHidden mob-w-full">
                                 <div class="c-banner__info" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
-                                    <div class="c-banner__info-item">13000+ м2 производственных площадей</div>
+                                    <div class="c-banner__info-item">13000+ м<sup>2</sup> производственных площадей</div>
                                     <div class="c-banner__info-item">300+ реализуемых проектов в год</div>
                                     <div class="c-banner__info-item">2000+ изделий производим ежегодно</div>
                                 </div>
@@ -133,8 +173,8 @@
                         </div>
                         <div class="grow"></div>
                         <div class="c-banner__bottom">
-                            <div class="c-banner__footer">
-                                <div class="overflowWrapHidden">
+                            <div class="c-banner__footer mob-fd-c">
+                                <div class="overflowWrapHidden mob-w-auto">
                                     <div class="c-banner__footer-title" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
                                         <h2 class="c-banner__text">
                                             Комплексное благоустройство придомовой территории
@@ -149,7 +189,8 @@
                                 <div class="overflowWrapHidden wrap-btn-banner">
                                     <div data-aos="fade"
                                          data-aos-anchor-placement="bottom-bottom"
-                                         data-aos-duration="2500">
+                                         data-aos-duration="2500"
+                                         class="mob-w-full">
                                         <button
                                                 class="c-banner__btn c-btn c-btn__pouring c-btn__hoverAccent btnTriggerPopup"
                                                 data-target="catalog"
@@ -282,7 +323,7 @@
                             </div>
                             <div class="c-info-box__content-bottom">
                                 <div class="c-info-box__content-position">
-                                    <div class="overflowWrapHidden">
+                                    <div class="overflowWrapHidden mob-w-auto">
                                         <div class="c-info-box__content-position-item c-info-box__content-position-item-small"
                                              data-aos="fade-up"
                                              data-aos-anchor-placement="center-bottom"
@@ -291,7 +332,7 @@
                                             стандартов для создания комфортной городской среды в России.
                                         </div>
                                     </div>
-                                    <div class="overflowWrapHidden">
+                                    <div class="overflowWrapHidden mob-w-auto">
                                         <div class="c-info-box__content-position-item c-info-box__content-position-item-middle"
                                              data-aos="fade-up"
                                              data-aos-anchor-placement="center-bottom"
@@ -301,8 +342,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="overflowWrapHidden">
-                                    <div class="c-info-box__content-text c-blacked-text-opacity"
+                                <div class="overflowWrapHidden mob-overflow-i">
+                                    <div class="c-info-box__content-text mob-new-fix c-blacked-text-opacity"
                                          data-aos="fade-up"
                                          data-aos-anchor-placement="center-bottom"
                                          data-aos-duration="1000">до <span>30%</span>
@@ -323,7 +364,7 @@
                         <div class="c-product__wrap-tab tabBlock" data-tab-group="1">
                             <div class="c-product__header">
                                 <div class="c-product__title">
-                                    <div class="overflowWrapHidden">
+                                    <div class="overflowWrapHidden mob-w-auto">
                                         <h3 class="c-product__title-title"
                                             data-aos="fade-up"
                                             data-aos-anchor-placement="center-bottom"
@@ -361,10 +402,9 @@
                                     <li><button id="tab5-1" aria-controls="panel5-1" aria-selected="false" class="c-product__tag tabButton c-btn c-btn__tag">Скамейки</button></li>
                                 </ul>
                             </nav>
-                            <div class="c-product__tab-content"
-                                 data-target="catalog"
+                            <div class="c-product__tab-content" data-target="catalog"
                                  data-aos="fade"
-                                 data-aos-anchor-placement="bottom-bottom"
+                                 data-aos-anchor-placement="center-bottom"
                                  data-aos-duration="2500">
                                 <section id="panel1-1" aria-labelledby="tab1-1" role="tabpanel" tabindex="0" class="active">
                                     <div class="c-product__cards">
@@ -540,7 +580,7 @@
                                         <button
                                             class="c-models__btn btnTriggerPopup"
                                             data-target="3d-modal"
-                                        >Получить <br> 3D модели
+                                        >Получить <br> 3D-модели
                                         </button>
                                     </div>
                                 </div>
@@ -636,7 +676,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="overflowWrapHidden">
+                                <div class="overflowWrapHidden mob-min-h-120">
                                     <div class="c-info-box__content-text c-blacked-text-opacity" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
                                         <span>13000</span>
                                         <div class="c-info-box__content-text-position">
@@ -644,6 +684,18 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div data-aos="fade"
+                                 data-aos-anchor-placement="center-center"
+                                 data-aos-duration="500"
+                                 class="c-info-box__wrap-btn-bottom">
+                                <a
+                                        href="https://megapolisgroup.spb.ru/"
+                                        target="_blank"
+                                        class="c-info-box__btn c-btn c-btn__opacity"
+                                >
+                                    Сайт компании
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -660,7 +712,7 @@
                             <div class="c-product__header">
                                 <div class="c-product__title">
                                     <div class="overflowWrapHidden">
-                                        <h3 class="c-product__title-title"
+                                        <h3 class="c-product__title-title mob-w-auto"
                                             data-aos="fade-up"
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="500">Реализованные проекты
@@ -692,7 +744,7 @@
                             <div class="c-product__tab-content"
                                  data-target="catalog"
                                  data-aos="fade"
-                                 data-aos-anchor-placement="bottom-bottom"
+                                 data-aos-anchor-placement="center-bottom"
                                  data-aos-duration="2500">
                                 <section id="panel1-2" aria-labelledby="tab1-2" role="tabpanel" tabindex="0" class="active">
                                     <div class="c-product__gallery paintBackground">
@@ -1009,14 +1061,14 @@
     <div class="c-modal" data-modal="form-status">
         <div class="c-modal__content">
             <div class="c-modal__cover btnModalCloseFile"></div>
-            <div class="c-modal__wrap">
+            <div class="c-modal__wrap c-modal__wrap-status">
                 <div class="c-modal__window">
                     <div class="c-modal__form">
                         <div class="c-modal__thanks">
-                            <h3 class="c-modal__title" id="form-status-title"></h3>
+                            <h3 class="c-modal__title" id="form-status-title">Спасибо за вашу заявку! Ваши данные успешно отправлены.</h3>
                             <div class="grow"></div>
-                            <p class="c-modal__text" id="form-status-text"></p>
-                            <button class="c-product__btn c-btn c-btn__accent btnModalCloseFile" id="form-status-button"></button>
+                            <p class="c-modal__text" id="form-status-text">Мы свяжемся с вами в ближайшее время, чтобы обсудить все детали. Если у вас возникли вопросы, вы всегда можете обратиться к нам.</p>
+                            <button class="c-product__btn c-btn c-btn__accent btnModalCloseFile" id="form-status-button">Закрыть</button>
                         </div>
                     </div>
                 </div>
