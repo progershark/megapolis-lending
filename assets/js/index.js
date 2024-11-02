@@ -95,15 +95,36 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btnMenuBurger, .contentMenuBurger .c-header__menu-nav ul li a').forEach(btn => {
         btn.addEventListener('click', () => {
             const contentMenuBurger = document.querySelector('.contentMenuBurger');
-            if(contentMenuBurger.classList.contains('fade-in')) {
-                hideModal(contentMenuBurger);
+            updateMenuHeight(contentMenuBurger);
+
+            if (contentMenuBurger.classList.contains('fade-in')) {
+                hideModalMenu(contentMenuBurger);
                 document.body.style.overflow = 'inherit';
+                window.removeEventListener('resize', updateMenuHeight);
+                window.removeEventListener('scroll', updateMenuHeight);
             } else {
-                showModal(contentMenuBurger);
+                showModalMenu(contentMenuBurger);
                 document.body.style.overflow = 'hidden';
+                window.addEventListener('resize', () => updateMenuHeight(contentMenuBurger));
+                window.addEventListener('scroll', () => updateMenuHeight(contentMenuBurger));
             }
         });
     });
+
+    function updateMenuHeight(contentMenuBurger) {
+        contentMenuBurger.style.height = `${window.innerHeight}px`;
+        console.log(window.innerHeight);
+    }
+
+    function hideModalMenu(contentMenuBurger) {
+        contentMenuBurger.classList.remove('fade-in');
+        contentMenuBurger.classList.add('fade-out');
+    }
+
+    function showModalMenu(contentMenuBurger) {
+        contentMenuBurger.classList.remove('fade-out');
+        contentMenuBurger.classList.add('fade-in');
+    }
 
 
 
@@ -181,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateFormStatusModal(type) {
         if (type === 'success') {
             formStatusTitle.textContent = 'Спасибо за вашу заявку! Ваши данные успешно отправлены.';
-            formStatusText.innerHTML = 'Мы свяжемся с вами в ближайшее время, чтобы <br class="mob-hidden"> обсудить все детали. Если у вас возникли вопросы, <br> вы всегда можете обратиться к нам.';
+            formStatusText.innerHTML = 'Мы свяжемся с вами в ближайшее время, чтобы <br class="mob-hidden"> обсудить все детали.';
             formStatusButton.textContent = 'Закрыть';
         } else if (type === 'error') {
             formStatusTitle.textContent = 'Ошибка при отправке данных';
@@ -422,6 +443,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     shouldPreventDefault = true;
                 }
 
+                console.log(window.innerWidth + "Ширина экрана");
+                console.log(horizontalScrollAmount + "Ширина шага");
+                console.log(maxHorizontalScroll + "Ширина обертки");
+
                 process.style.transform = `translateX(${horizontalScrollAmount}px)`;
 
                 const scrollPercentage = Math.abs(horizontalScrollAmount) / maxHorizontalScroll * 100;
@@ -464,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showNextItem();
         }
 
-        if (window.innerWidth > 768 && isScrollable) {
+        if (window.innerWidth > 1024 && isScrollable) {
             wrapProcess.addEventListener('wheel', handleScroll);
             wrapProcess.addEventListener('touchmove', handleTouchMove);
             header.addEventListener('wheel', handleScroll);
@@ -507,6 +532,50 @@ document.addEventListener('DOMContentLoaded', () => {
         checkScreenSize();
 
         window.addEventListener('resize', checkScreenSize);
+    }
+
+    // Cookies
+    const cookieBanner = document.querySelector('.cookieBanner');
+    const cookieButton = document.querySelector('.cookieBtn');
+
+    // Функция для установки cookie
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Функция для получения cookie
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    if (!getCookie('cookieConsent')) {
+        cookieBanner.classList.add('show');
+    }
+
+    cookieButton.addEventListener('click', function() {
+        setCookie('cookieConsent', 'true', 365);
+        cookieBanner.classList.remove('show');
+    });
+
+
+
+    // Высота для баннеров
+    const elementsBannerImg = document.querySelectorAll('.c-banner__img, .banner__gif, .c-banner__img, .banner__gif-video');
+    if (elementsBannerImg && window.innerWidth <= 1024) {
+        const height = window.innerHeight;
+        elementsBannerImg.forEach(element => {
+            element.style.height = height + 'px';
+        });
     }
 
 

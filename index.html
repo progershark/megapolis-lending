@@ -19,17 +19,14 @@
 </head>
 <body>
 <div id="content">
-    <header class="c-header" id="header"
-            data-aos="fade"
-            data-aos-anchor-placement="bottom-bottom"
-            data-aos-duration="2500">
+    <header class="c-header" id="header">
         <div class="c-header__wrapper">
-            <h1>
+            <h1 data-aos="fade" data-aos-anchor-placement="bottom-bottom" data-aos-duration="2500">
                 <a class="c-header__logo" href="/">
                     <img src="assets/icon/logo.svg" alt="logo">
                 </a>
             </h1>
-            <nav class="c-header__nav">
+            <nav class="c-header__nav" data-aos="fade" data-aos-anchor-placement="bottom-bottom" data-aos-duration="2500">
                 <ul>
                     <li><a href="#products">Продукция</a></li>
                     <li><a href="#projects">Проекты</a></li>
@@ -70,8 +67,8 @@
                     <div class="overflowWrapHidden c-banner__wrap-btn-footer">
                         <div data-aos="fade" data-aos-anchor-placement="bottom-bottom" data-aos-duration="2500" class="aos-init aos-animate">
                             <button
-                                class="c-banner__btn c-btn c-btn__opacity btnTriggerPopup"
-                                data-target="project-costing">Рассчитать проект
+                                    class="c-banner__btn c-btn c-btn__opacity btnTriggerPopup"
+                                    data-target="project-costing">Рассчитать проект
                             </button>
                         </div>
                     </div>
@@ -853,7 +850,8 @@
 
                             <span data-aos="fade"
                                   data-aos-anchor-placement="bottom-bottom"
-                                  data-aos-duration="2000">Нажав на кнопку «Отправить», вы даете согласие на обработку Персональных данных</span>
+                                  data-aos-duration="2000">Нажав на кнопку «Отправить», вы даете согласие на обработку
+                                <a href="private-policy.html">Персональных данных</a></span>
 
                             <div data-aos="fade"
                                  data-aos-anchor-placement="bottom-bottom"
@@ -960,6 +958,8 @@
                                     <input type="email" name="email" id="email" placeholder="Почта">
                                 </div>
 
+                                <div class="grow"></div>
+
                                 <span>Нажав на кнопку «Отправить», вы даете согласие на обработку Персональных данных</span>
 
                                 <button type="submit" class="c-modal__form-btn c-btn c-btn__accent">Отправить</button>
@@ -1003,6 +1003,8 @@
                                     <input type="email" name="email" id="email" placeholder="Почта">
                                 </div>
 
+                                <div class="grow"></div>
+
                                 <span>Нажав на кнопку «Отправить», вы даете согласие на обработку Персональных данных</span>
 
                                 <button type="submit" class="c-modal__form-btn c-btn c-btn__accent">Отправить</button>
@@ -1045,6 +1047,8 @@
                                 <div class="c-modal__form-input">
                                     <input type="email" name="email" id="email" placeholder="Почта">
                                 </div>
+
+                                <div class="grow"></div>
 
                                 <span>Нажав на кнопку «Отправить», вы даете согласие на обработку Персональных данных</span>
 
@@ -1090,6 +1094,21 @@
                     </div>-->
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="c-cookies cookieBanner">
+        <div class="c-cookies__group">
+            <div class="c-cookies__title">Этот сайт использует cookies</div>
+            <div class="c-cookies__text">
+                Продолжая пользоваться сайтом, вы соглашаетесь с условиями, описанными в
+                <a class="c-cookies__link" href="#">Политике конфиденциальности</a>
+            </div>
+        </div>
+        <div class="c-cookies__group">
+            <button class="c-cookies__btn c-btn c-btn__pouring cookieBtn">
+                Хорошо
+            </button>
         </div>
     </div>
 </div>
