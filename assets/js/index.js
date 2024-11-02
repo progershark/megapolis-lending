@@ -546,6 +546,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
 
+
+
+
+    // Высота для баннеров
+    function adjustBannerHeight(elements, maxScreenWidth) {
+        if (elements && window.innerWidth <= maxScreenWidth) {
+            const height = window.innerHeight;
+            elements.forEach(element => {
+                element.style.height = height + 'px';
+            });
+        }
+    }
+
+    const elementsBannerImg = document.querySelectorAll('.c-banner__img, .banner__gif, .c-banner__img, .banner__gif-video');
+    adjustBannerHeight(elementsBannerImg, 1024);
+
+    const elementsBannerSlider = document.querySelectorAll('.bannerSlider');
+    adjustBannerHeight(elementsBannerSlider, 430);
+
+    console.log(elementsBannerSlider);
+
+
+
+    // Определяем Ос
+    if (navigator.userAgent.indexOf("Win") != -1) {
+        document.body.classList.add('windows');
+    } else if (navigator.userAgent.indexOf("Mac") != -1) {
+        document.body.classList.add('mac');
+    }
+
+
+
     // Функция для получения cookie
     function getCookie(name) {
         const nameEQ = name + "=";
@@ -566,23 +598,4 @@ document.addEventListener('DOMContentLoaded', () => {
         setCookie('cookieConsent', 'true', 365);
         cookieBanner.classList.remove('show');
     });
-
-
-
-    // Высота для баннеров
-    const elementsBannerImg = document.querySelectorAll('.c-banner__img, .banner__gif, .c-banner__img, .banner__gif-video');
-    if (elementsBannerImg && window.innerWidth <= 1024) {
-        const height = window.innerHeight;
-        elementsBannerImg.forEach(element => {
-            element.style.height = height + 'px';
-        });
-    }
-
-
-    // Определяем Ос
-    if (navigator.userAgent.indexOf("Win") != -1) {
-        document.body.classList.add('windows');
-    } else if (navigator.userAgent.indexOf("Mac") != -1) {
-        document.body.classList.add('mac');
-    }
 });
